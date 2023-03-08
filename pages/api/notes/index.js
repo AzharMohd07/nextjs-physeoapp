@@ -4,7 +4,11 @@ dbConnect();
 
 export default async (req, res) => {
     const { method } = req;
-
+    
+    Note.find({}, 'title').then(names => {
+        res.status(200).json(names);
+        });
+        
     switch (method) {
         case 'GET':
             try {
@@ -24,7 +28,6 @@ export default async (req, res) => {
                 res.status(400).json({ success: false });
             }
             break;
-
         default:
             res.status(400).json({ success: false });
             break;

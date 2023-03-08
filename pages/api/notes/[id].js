@@ -10,7 +10,6 @@ export default async (req, res) => {
     } = req;
 
     switch (method) {
-
         case 'GET':
             try {
                 const note = await Note.findById(id);
@@ -24,10 +23,9 @@ export default async (req, res) => {
                 res.status(400).json({ success: false });
             }
             break;
-            
         case 'PUT':
             try {
-                let note = await Note.findByIdAndUpdate(id, req.body, {
+                const note = await Note.findByIdAndUpdate(id, req.body, {
                     new: true,
                     runValidators: true
                 });
